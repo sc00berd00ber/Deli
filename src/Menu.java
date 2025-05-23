@@ -1,39 +1,103 @@
-public class HomeScreen {
+import java.util.Scanner;
 
-    System.out.println("Home Screen!");
-/*
-Home Screen
-o The home screen should give the user the following options. The
-application should continue to run until the user chooses to exit.
-§   1) New Order
-§   0) Exit - exit the application
-*/
 
+public class Menu {
+
+    Scanner scanner = new Scanner(System.in);
+
+    public void homeScreen() {
+        while (true){
+            System.out.println("\n-----------------Home Screen-----------------");
+            System.out.println("1) New Order");
+            System.out.println("0) Exit");
+            System.out.println("\nChoice: ");
+
+            String input = scanner.nextLine();
+
+            switch (input) {
+                case "1": orderScreen();
+                    break;
+                case "0": return;
+                default:
+                    System.out.println("Invalid Entry! Try Again");
+
+            }
+        }
+    }
+    public void orderScreen() {
+
+        while (true) {
+            System.out.println("\n-----------------Order Screen-----------------");
+            System.out.println("1) Add Sandwich");
+            System.out.println("2) Add Drink");
+            System.out.println("3) Add Chips");
+            System.out.println("4) Checkout");
+            System.out.println("0) Cancel Order");
+            System.out.println("\nChoice: ");
+
+            String input = scanner.nextLine();
+
+            switch (input) {
+                case "1":
+                    addSandwich();
+                    break;
+                case "2":
+                    System.out.println("Drink added!");
+                    break;
+                case "3":
+                    System.out.println("Chips added!");
+                    break;
+                case "4":
+                    System.out.println("Checking out...");
+                    return;
+                case "0":
+                    System.out.println("Order canceled.");
+                    return;
+                default:
+                    System.out.println("Invalid Entry! Try Again");
+            }
+        }
+    }
+    public void addSandwich(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Select Bread Type (White, Wheat, Rye, Wrap): ");
+        String breadChoice = scanner.nextLine();
+        System.out.println("Sandwich Size (4, 8, 12): ");
+        String sizeChoice = scanner.nextLine();
+
+        toppingsMenu();
+    }
+    public void toppingsMenu() {
+        while (true) {
+            System.out.println("\n-----------------Toppings Menu-----------------");
+            System.out.println("Select Meat: ");
+            System.out.println("Select Cheese: ");
+            System.out.println("Would you like it toasted? ");
+            System.out.println("Select Veggies: ");
+            System.out.println("Select Sauces: ");
+            System.out.println("Select Sides: ");
+            System.out.println("Confirm Changes: 'Y'/'N' ");
+
+        }
+    }
+    public void drinksMenu(){
+        System.out.println("1) Coca-cola");
+        System.out.println("2) Pepsi");
+        System.out.println("3) Root Beer");
+        System.out.println("4) Fanta");
+        System.out.println("5) Sprite");
+        System.out.println("Select Drink Size (S, M, L): ");
+        System.out.println("Select Drink: ");
+    }
+    public void chipsMenu(){
+        System.out.println("1) Lays - BBQ");
+        System.out.println("1) Hot Cheetos");
+        System.out.println("1) Ruffles - Original");
+        System.out.println("1) Pringles - Salt & Vinegar");
+        System.out.println("Select Chips: ");
+    }
+    public void checkout(){
+        System.out.println("1) Confirm");
+        System.out.println("1) Cancel");
+    }
 }
-
-
-/*
-• Order Screen - All entries should show the newest entries first
-o 1) Add Sandwich
-o 2) Add Drink
-o 3) Add Chips
-o 4) Checkout
-o 0) Cancel Order - delete the order and go back to the home page
-• Add Sandwich - the add sandwich screen will walk the user through
-several options to create the sandwich
-o Select your bread:
-o Sandwich size:
-o Toppings: - the user should be able to add extras of each topping
-§ Meat:
-§ Cheese:
-§ Other toppings:
-§ Select sauces:
-o Would you like the sandwich toasted?
-• Add Drink - select drink size and flavor
-• Add Chips - select chip type
-• Checkout - display the order details and the price
-o Confirm - create the receipt file and go back to the home screen
-o Cancel - delete order and go back to the home screen
-
- */
-
