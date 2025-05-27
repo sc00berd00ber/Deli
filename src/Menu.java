@@ -6,7 +6,8 @@ public class Menu {
     Scanner scanner = new Scanner(System.in);
 
     public void homeScreen() {
-        while (true){
+        boolean running = true;
+        while (running){
             System.out.println("\n-----------------Home Screen-----------------");
             System.out.println("1) New Order");
             System.out.println("0) Exit");
@@ -17,7 +18,8 @@ public class Menu {
             switch (input) {
                 case "1": orderScreen();
                     break;
-                case "0": return;
+                case "0": running = false;
+                break;
                 default:
                     System.out.println("Invalid Entry! Try Again");
 
@@ -25,8 +27,9 @@ public class Menu {
         }
     }
     public void orderScreen() {
+        boolean running = true;
+        while (running) {
 
-        while (true) {
             System.out.println("\n-----------------Order Screen-----------------");
             System.out.println("1) Add Sandwich");
             System.out.println("2) Add Drink");
