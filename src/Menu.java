@@ -31,7 +31,7 @@ public class Menu {
         while (running) {
 
             System.out.println("\n-----------------Order Screen-----------------");
-            System.out.println("1) Add Sandwich");
+            System.out.println("1) Add Items.Sandwich");
             System.out.println("2) Add Drink");
             System.out.println("3) Add Chips");
             System.out.println("4) Checkout");
@@ -65,7 +65,7 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Select Bread Type (White, Wheat, Rye, Wrap): ");
         String breadChoice = scanner.nextLine();
-        System.out.println("Sandwich Size (4, 8, 12): ");
+        System.out.println("Items.Sandwich Size (4, 8, 12): ");
         String sizeChoice = scanner.nextLine();
 
         toppingsMenu();
@@ -73,7 +73,7 @@ public class Menu {
     public void toppingsMenu() {
         while (true) {
             System.out.println("\n-----------------Toppings Menu-----------------");
-            System.out.println("Select Meat: ");
+            System.out.println("Select Toppings.Meat: ");
             System.out.println("Select Cheese: ");
             System.out.println("Would you like it toasted? ");
             System.out.println("Select Veggies: ");
