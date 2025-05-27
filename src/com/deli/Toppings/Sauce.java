@@ -1,4 +1,4 @@
-package Toppings;
+package com.deli.Toppings;
 
 public class Sauce {
     private String name;

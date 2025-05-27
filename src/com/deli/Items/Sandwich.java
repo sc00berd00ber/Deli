@@ -1,7 +1,7 @@
-package Items;
+package com.deli.Items;
 
-import Toppings.Sauce;
-import Toppings.Topping;
+import com.deli.Toppings.Sauce;
+import com.deli.Toppings.Topping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,5 +36,8 @@ public class Sandwich {
             basePrice += topping.getPrice(size);
         }
         return basePrice;
+    }
+    public String getDescription(){
+        return "";
     }
 }
