@@ -1,4 +1,4 @@
-package com.deli.Items;
+package com.deli.Items.sandwiches;
 
 import com.deli.Toppings.Sauce;
 import com.deli.Toppings.Topping;
@@ -18,6 +18,24 @@ public class Sandwich {
         this.size = size;
         this.isToasted = isToasted;
     }
+    public String getBreadType() {
+        return breadType;
+    }
+
+    public int getSize() {
+        return size;
+    }
+    public boolean isToasted() {
+        return isToasted;
+    }
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+
+    public List<Sauce> getSauces() {
+        return sauces;
+    }
+
     public void addTopping(Topping topping) {
         toppings.add(topping);
     }

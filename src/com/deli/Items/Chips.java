@@ -8,7 +8,7 @@ public class Chips {
         this.type = type;
     }
 
-    public String getDescription(){
+    public String getType(){
         return type;
     }
     public double getPrice(){

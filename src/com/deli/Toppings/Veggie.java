@@ -11,7 +11,7 @@ public class Veggie implements Topping{
 
     @Override
     public String getName() {
-        return name + (isExtra ? " (extra" : "");
+        return name + (isExtra ? " (extra)" : "");
     }
 
     @Override

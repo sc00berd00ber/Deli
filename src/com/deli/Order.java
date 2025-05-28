@@ -2,23 +2,28 @@ package com.deli;
 
 import com.deli.Items.Chips;
 import com.deli.Items.Drink;
-import com.deli.Items.Sandwich;
+import com.deli.Items.sandwiches.Sandwich;
+import com.deli.Items.Side;
+import com.deli.Items.sandwiches.SignatureSandwich;
 import com.deli.Toppings.Sauce;
 import com.deli.Toppings.Topping;
-
+import java.util.Collections;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private List<Sandwich> sandwiches = new ArrayList<>();
+    private List<Side> sides = new ArrayList<>();
     private List<Drink> drinks = new ArrayList<>();
     private List<Chips> chips = new ArrayList<>();
     private LocalDateTime timestamp = LocalDateTime.now();
 
     public void addSandwich(Sandwich sandwich){
         sandwiches.add(sandwich);
+    }
+    public void addSide(Side side) {
+        sides.add(side);
     }
     public void addDrink(Drink drink){
         drinks.add(drink);
@@ -40,17 +45,21 @@ public class Order {
 
     public String generateReceipt() {
         StringBuilder sb = new StringBuilder();
-        sb.append("com.deli.Order Summary\n");
-        sb.append("---------------------------\n");
+
+        List<Sandwich> reversedSandwiches = new ArrayList<>(sandwiches);
+        Collections.reverse(reversedSandwiches);
 
         int count = 1;
-        for (Sandwich s : sandwiches) {
+        for (Sandwich s : reversedSandwiches) {
+            if (s instanceof SignatureSandwich ss) {
+                sb.append("Signature: ").append(ss.getName()).append("\n");
+            }
             sb.append("Sandwich ").append(count++).append(":\n");
             sb.append("  Bread: ").append(s.getBreadType()).append("\n");
             sb.append("  Size: ").append(s.getSize()).append("\"\n");
             sb.append("  Toasted: ").append(s.isToasted() ? "Yes" : "No").append("\n");
 
-            sb.append("  com.deli.Toppings:\n");
+            sb.append("  Toppings:\n");
             for (Topping t : s.getToppings()) {
                 sb.append("    - ").append(t.getName()).append("\n");
             }
@@ -65,8 +74,10 @@ public class Order {
 
         if (!drinks.isEmpty()) {
             sb.append("Drinks:\n");
-            for (Drink d : drinks) {
-                sb.append("  - ").append(d.getDescription())
+            List<Drink> reversedDrinks = new ArrayList<>(drinks);
+            Collections.reverse(reversedDrinks);
+            for (Drink d : reversedDrinks) {
+                sb.append("  - ").append(d.getFlavor())
                         .append(" ($").append(String.format("%.2f", d.getPrice())).append(")\n");
             }
             sb.append("\n");
@@ -74,12 +85,25 @@ public class Order {
 
         if (!chips.isEmpty()) {
             sb.append("Chips:\n");
-            for (Chips c : chips) {
-                sb.append("  - ").append(c.getDescription())
+            List<Chips> reversedChips = new ArrayList<>(chips);
+            Collections.reverse(reversedChips);
+            for (Chips c : reversedChips) {
+                sb.append("  - ").append(c.getType())
                         .append(" ($").append(String.format("%.2f", c.getPrice())).append(")\n");
             }
             sb.append("\n");
         }
+
+        if (!sides.isEmpty()) {
+            sb.append("Sides:\n");
+            List<Side> reversedSides = new ArrayList<>(sides);
+            Collections.reverse(reversedSides);
+            for (Side s : reversedSides) {
+                sb.append("  - ").append(s.getDescription()).append("\n");
+            }
+            sb.append("\n");
+        }
+
 
         sb.append("---------------------------\n");
         sb.append("Total: $").append(String.format("%.2f", calculateTotal())).append("\n");
@@ -87,10 +111,6 @@ public class Order {
         return sb.toString();
     }
 
-    public String getFileName(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-HHmmss");
-        return timestamp.format(formatter) + ".txt";
-    }
     public LocalDateTime getTimestamp() {
         return timestamp;
     }
