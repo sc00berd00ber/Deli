@@ -68,3 +68,6 @@ public class BLT extends SignatureSandwich {
 
 This subclass demonstrates inheritance, encapsulation, and template instantiation — a clean way to manage predefined products.
 
+## 📊 Diagram
+
+![Screenshot 2025-05-29 143858](https://github.com/user-attachments/assets/a88cf04d-85b0-4116-a74e-b04e6b2642ae)
