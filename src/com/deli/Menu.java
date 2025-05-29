@@ -2,11 +2,8 @@ package com.deli;
 
 import com.deli.Items.Chips;
 import com.deli.Items.Drink;
-import com.deli.Items.sandwiches.BLT;
-import com.deli.Items.sandwiches.PhillyCheeseSteak;
-import com.deli.Items.sandwiches.Sandwich;
+import com.deli.Items.sandwiches.*;
 import com.deli.Items.Side;
-import com.deli.Items.sandwiches.SignatureSandwich;
 import com.deli.Toppings.Cheese;
 import com.deli.Toppings.Meat;
 import com.deli.Toppings.Sauce;
@@ -80,7 +77,7 @@ public class Menu {
 
         String breadType = "";
         while (true) {
-            System.out.print("Choose your bread (1-4): ");
+            System.out.print("\nChoose your bread (1-4): ");
             try {
                 int breadChoice = Integer.parseInt(scanner.nextLine());
                 if (breadChoice >= 1 && breadChoice <= breadOptions.length) {
@@ -97,7 +94,11 @@ public class Menu {
         // --- Size Selection ---
         int sizeInInches = 0;
         while (true) {
-            System.out.print("Choose sandwich size (4' ($5.50), 8' ($7.00), 12' ($8.50) ): ");
+            System.out.println("\nSelect Sandwich Size:");
+            System.out.println("4\" - $5.50");
+            System.out.println("8\" - $7.00");
+            System.out.println("12\" - $8.50");
+            System.out.println("\nChoose Size (4, 8, or 12): ");
             try {
                 int sizeChoice = Integer.parseInt(scanner.nextLine());
                 if (sizeChoice == 4 || sizeChoice == 8 || sizeChoice == 12) {
@@ -138,6 +139,8 @@ public class Menu {
         System.out.println("\n---------- Signature Sandwiches ----------\n");
         System.out.println("1) BLT");
         System.out.println("2) Philly Cheese Steak");
+        System.out.println("3) Italian Classic");
+        System.out.println("4) Veggie Supreme");
         System.out.print("Choose a signature sandwich: ");
 
         String input = scanner.nextLine().trim();
@@ -146,6 +149,8 @@ public class Menu {
         switch (input) {
             case "1" -> sandwich = new BLT();
             case "2" -> sandwich = new PhillyCheeseSteak();
+            case "3" -> sandwich = new ItalianClassic();
+            case "4" -> sandwich = new VeggieSupreme();
             default -> {
                 System.out.println("Invalid choice.");
                 return;
@@ -159,9 +164,7 @@ public class Menu {
         }
 
         currentOrder.addSandwich(sandwich);
-        System.out.println(sandwich instanceof SignatureSandwich
-                ? ((SignatureSandwich)sandwich).getName() + " added!"
-                : "Sandwich added!");
+        System.out.println(((SignatureSandwich)sandwich).getName() + " added!");
     }
 
     public void toppingsMenu(Sandwich sandwich) {
@@ -169,66 +172,88 @@ public class Menu {
 
         // --- Meats ---
         String[] meats = {"Steak", "Ham", "Salami", "Roast Beef", "Chicken", "Bacon"};
-        System.out.println("\nMeat Options:\n");
+        System.out.println("\nMeat Options:");
         for (int i = 0; i < meats.length; i++) {
             System.out.printf("%d) %s%n", i + 1, meats[i]);
         }
+
         System.out.print("Enter choice: For more than 1 selection insert comma (e.g., 1,3): ");
         String[] meatChoices = scanner.nextLine().split(",");
+
         for (String choice : meatChoices) {
+            if (choice.trim().isEmpty()) continue;
             try {
                 int index = Integer.parseInt(choice.trim()) - 1;
-                if (index >= 0 && index < meats.length) {
-                    String meat = meats[index];
-                    System.out.printf("Add extra %s? (Y/N): ", meat);
-                    boolean extra = scanner.nextLine().equalsIgnoreCase("Y");
-                    sandwich.addTopping(new Meat(meat, extra));
+                if (index < 0 || index >= meats.length) {
+                    System.out.println("Invalid selection: " + choice.trim());
+                    continue;
                 }
-            } catch (NumberFormatException ignored) {}
+                String meat = meats[index];
+                System.out.printf("Add extra %s? (Y/N): ", meat);
+                String extraInput = scanner.nextLine().trim().toUpperCase();
+                boolean extra = extraInput.equals("Y");
+                sandwich.addTopping(new Meat(meat, extra));
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input: " + choice.trim());
+            }
         }
 
         // --- Cheeses ---
         String[] cheeses = {"American", "Provolone", "Cheddar", "Swiss"};
-        System.out.println("\nCheese Options:\n");
+        System.out.println("\nCheese Options:");
         for (int i = 0; i < cheeses.length; i++) {
             System.out.printf("%d) %s%n", i + 1, cheeses[i]);
         }
+
         System.out.print("Enter choice: For more than 1 selection insert comma (e.g., 1,3): ");
         String[] cheeseChoices = scanner.nextLine().split(",");
         for (String choice : cheeseChoices) {
+            if (choice.trim().isEmpty()) continue;
             try {
                 int index = Integer.parseInt(choice.trim()) - 1;
-                if (index >= 0 && index < cheeses.length) {
-                    String cheese = cheeses[index];
-                    System.out.printf("Add extra %s cheese? (Y/N): ", cheese);
-                    boolean extra = scanner.nextLine().equalsIgnoreCase("Y");
-                    sandwich.addTopping(new Cheese(cheese, extra));
+                if (index < 0 || index >= cheeses.length) {
+                    System.out.println("Invalid selection: " + choice.trim());
+                    continue;
                 }
-            } catch (NumberFormatException ignored) {}
+                String cheese = cheeses[index];
+                System.out.printf("Add extra %s cheese? (Y/N): ", cheese);
+                String extraInput = scanner.nextLine().trim().toUpperCase();
+                boolean extra = extraInput.equals("Y");
+                sandwich.addTopping(new Cheese(cheese, extra));
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input: " + choice.trim());
+            }
         }
 
-        // --- Veggie ---
+        // --- Veggies ---
         String[] veggies = {
                 "Lettuce", "Peppers", "Onions", "Tomatoes", "Jalapeños",
                 "Cucumbers", "Pickles", "Guacamole", "Mushrooms"
         };
-        System.out.println("\nRegular Topping Options:");
+        System.out.println("\nVeggie Topping Options:");
         for (int i = 0; i < veggies.length; i++) {
             System.out.printf("%d) %s%n", i + 1, veggies[i]);
         }
+
         System.out.print("Enter choice: For more than 1 selection insert comma (e.g., 1,3): ");
         String[] toppingChoices = scanner.nextLine().split(",");
         Set<Integer> selectedRegularIndexes = new HashSet<>();
 
         for (String choice : toppingChoices) {
+            if (choice.trim().isEmpty()) continue;
             try {
                 int index = Integer.parseInt(choice.trim()) - 1;
-                if (index >= 0 && index < veggies.length && selectedRegularIndexes.add(index)) {
-                    System.out.printf("Add extra %s? (Y/N): ", veggies[index]);
-                    boolean extra = scanner.nextLine().equalsIgnoreCase("Y");
-                    sandwich.addTopping(new Veggie(veggies[index], extra));
+                if (index < 0 || index >= veggies.length || !selectedRegularIndexes.add(index)) {
+                    System.out.println("Invalid or duplicate selection: " + choice.trim());
+                    continue;
                 }
-            } catch (NumberFormatException ignored) {}
+                System.out.printf("Add extra %s? (Y/N): ", veggies[index]);
+                String extraInput = scanner.nextLine().trim().toUpperCase();
+                boolean extra = extraInput.equals("Y");
+                sandwich.addTopping(new Veggie(veggies[index], extra));
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input: " + choice.trim());
+            }
         }
 
         // --- Sauces ---
@@ -237,20 +262,26 @@ public class Menu {
         for (int i = 0; i < sauces.length; i++) {
             System.out.printf("%d) %s%n", i + 1, sauces[i]);
         }
+
         System.out.print("Enter choice: For more than 1 selection insert comma (e.g., 1,3): ");
         String[] sauceChoices = scanner.nextLine().split(",");
         for (String choice : sauceChoices) {
+            if (choice.trim().isEmpty()) continue;
             try {
                 int index = Integer.parseInt(choice.trim()) - 1;
-                if (index >= 0 && index < sauces.length) {
-                    sandwich.addSauce(new Sauce(sauces[index]));
+                if (index < 0 || index >= sauces.length) {
+                    System.out.println("Invalid selection: " + choice.trim());
+                    continue;
                 }
-            } catch (NumberFormatException ignored) {}
+                sandwich.addSauce(new Sauce(sauces[index]));
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input: " + choice.trim());
+            }
         }
 
-        System.out.println("\nToppings added!");
-
+        System.out.println("\nToppings added successfully!");
     }
+
 
     public void addDrink() {
         String[] drinkFlavors = {"Coca-Cola", "Pepsi", "Root Beer", "Fanta", "Sprite"};
@@ -359,8 +390,6 @@ public class Menu {
     public void checkout() {
         System.out.println("\n---------- Order Summary ----------\n");
         System.out.println(currentOrder.generateReceipt());
-        System.out.printf("Total: $%.2f%n", currentOrder.calculateTotal());
-
         System.out.print("\n1) Confirm\n2) Cancel\nChoice: ");
         String input = scanner.nextLine();
         if (input.equals("1")) {
