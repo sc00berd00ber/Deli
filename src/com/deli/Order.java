@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    private List<Sandwich> sandwiches = new ArrayList<>();
-    private List<Side> sides = new ArrayList<>();
-    private List<Drink> drinks = new ArrayList<>();
-    private List<Chips> chips = new ArrayList<>();
-    private LocalDateTime timestamp = LocalDateTime.now();
+    private final List<Sandwich> sandwiches = new ArrayList<>();
+    private final List<Side> sides = new ArrayList<>();
+    private final List<Drink> drinks = new ArrayList<>();
+    private final List<Chips> chips = new ArrayList<>();
+    private final LocalDateTime timestamp = LocalDateTime.now();
 
     public void addSandwich(Sandwich sandwich){
         sandwiches.add(sandwich);

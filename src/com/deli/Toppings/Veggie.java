@@ -1,8 +1,8 @@
 package com.deli.Toppings;
 
 public class Veggie implements Topping{
-    private String name;
-    private boolean isExtra;
+    private final String name;
+    private final boolean isExtra;
 
     public Veggie(String name, boolean isExtra){
         this.name = name;

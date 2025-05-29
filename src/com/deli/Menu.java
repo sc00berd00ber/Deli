@@ -75,7 +75,7 @@ public class Menu {
             System.out.printf("%d) %s%n", i + 1, breadOptions[i]);
         }
 
-        String breadType = "";
+        String breadType;
         while (true) {
             System.out.print("\nChoose your bread (1-4): ");
             try {
@@ -92,7 +92,7 @@ public class Menu {
         }
 
         // --- Size Selection ---
-        int sizeInInches = 0;
+        int sizeInInches;
         while (true) {
             System.out.println("\nSelect Sandwich Size:");
             System.out.println("4\" - $5.50");
@@ -113,7 +113,7 @@ public class Menu {
         }
 
         // --- Toasted? ---
-        boolean toasted = false;
+        boolean toasted;
         while (true) {
             System.out.print("Would you like the sandwich toasted? (Y/N): ");
             String toastChoice = scanner.nextLine().trim().toUpperCase();
@@ -144,7 +144,7 @@ public class Menu {
         System.out.print("Choose a signature sandwich: ");
 
         String input = scanner.nextLine().trim();
-        Sandwich sandwich = null;
+        Sandwich sandwich;
 
         switch (input) {
             case "1" -> sandwich = new BLT();

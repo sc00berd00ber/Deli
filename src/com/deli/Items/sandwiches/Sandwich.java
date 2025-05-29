@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sandwich {
-    private String breadType;
-    private int size;
-    private boolean isToasted;
-    private List<Topping> toppings = new ArrayList<>();
-    private List<Sauce> sauces = new ArrayList<>();
+    private final String breadType;
+    private final int size;
+    private final boolean isToasted;
+    private final List<Topping> toppings = new ArrayList<>();
+    private final List<Sauce> sauces = new ArrayList<>();
 
     public Sandwich(String breadType, int size, boolean isToasted){
         this.breadType = breadType;
@@ -55,7 +55,5 @@ public class Sandwich {
         }
         return basePrice;
     }
-    public String getDescription(){
-        return "";
-    }
+
 }

@@ -1,7 +1,7 @@
 package com.deli.Items.sandwiches;
 
 public class SignatureSandwich extends Sandwich {
-    private String name;
+    private final String name;
 
     public SignatureSandwich(String name, String breadType, int sizeInInches, boolean toasted) {
         super(breadType, sizeInInches, toasted);
