@@ -94,7 +94,7 @@ public class Menu {
         }
 
         // --- Size Selection ---
-        int sizeInInches;
+        int size;
         while (true) {
             System.out.println("\nSelect Sandwich Size:");
             System.out.println("4\" - $5.50");
@@ -104,7 +104,7 @@ public class Menu {
             try {
                 int sizeChoice = Integer.parseInt(scanner.nextLine());
                 if (sizeChoice == 4 || sizeChoice == 8 || sizeChoice == 12) {
-                    sizeInInches = sizeChoice;
+                    size = sizeChoice;
                     break;
                 } else {
                     System.out.println("Please enter 4, 8, or 12.");
@@ -131,12 +131,13 @@ public class Menu {
         }
 
         // --- Create Sandwich and Add Toppings ---
-        Sandwich sandwich = new Sandwich(breadType, sizeInInches, toasted);
+        Sandwich sandwich = new Sandwich(breadType, size, toasted);
         toppingsMenu(sandwich);
         currentOrder.addSandwich(sandwich);
 
         System.out.println("Sandwich added to order!");
     }
+
     public void addSignatureSandwich() {
         System.out.println("\n---------- Signature Sandwiches ----------\n");
         System.out.println("1) BLT");
@@ -166,7 +167,7 @@ public class Menu {
         }
 
         currentOrder.addSandwich(sandwich);
-        System.out.println(((SignatureSandwich)sandwich).getName() + " added!");
+        System.out.println(((SignatureSandwich) sandwich).getName() + " added!");
     }
 
     public void toppingsMenu(Sandwich sandwich) {
@@ -284,7 +285,6 @@ public class Menu {
         System.out.println("\nToppings added successfully!");
     }
 
-
     public void addDrink() {
         String[] drinkFlavors = {"Coca-Cola", "Pepsi", "Root Beer", "Fanta", "Sprite"};
 
@@ -305,7 +305,11 @@ public class Menu {
 
                     String size;
                     while (true) {
-                        System.out.printf("Select size for %s (S, M, L): ", flavor);
+                        System.out.println("\nSelect size: ");
+                        System.out.println("S - $2.00");
+                        System.out.println("M - $2.50");
+                        System.out.println("L - $3.00");
+                        System.out.println("\nChoice: ");
                         size = scanner.nextLine().trim().toUpperCase();
                         if (size.equals("S") || size.equals("M") || size.equals("L")) {
                             break;
@@ -392,7 +396,6 @@ public class Menu {
 
         System.out.println(addedAny ? "Sides added to order." : "No sides added.");
     }
-
 
     public void checkout() {
         System.out.println("\n---------- Order Summary ----------\n");
