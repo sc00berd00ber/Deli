@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://github.com/user-attachments/assets/4750c029-5385-44a2-bf3b-a23df5757278" alt="Description" width="600" height="500">
+<img src="https://github.com/user-attachments/assets/4750c029-5385-44a2-bf3b-a23df5757278" alt="Description" width="700" height="600">
 </div>
 
 
@@ -31,7 +31,7 @@
 ## 📸 Screenshots
 **🏠 Home Screen**
 
-![Screenshot 2025-05-29 092553](https://github.com/user-attachments/assets/4a0f07ae-8560-438d-8d12-c82c9c3a7446)
+![Screenshot 2025-05-30 132052](https://github.com/user-attachments/assets/3ff7c024-63a6-4f8d-8d6f-c4fbc8be2728)
 
 **🥪 Sandwich Builder**
 ```java
@@ -71,3 +71,38 @@ This subclass demonstrates inheritance, encapsulation, and template instantiatio
 ## 📊 Flow Diagram
 
 ![Screenshot 2025-05-29 143858](https://github.com/user-attachments/assets/a88cf04d-85b0-4116-a74e-b04e6b2642ae)
+
+## 🚀 Future Implementations & Improvements
+
+**🖥 Graphical User Interface (GUI)**
+Upgrade from CLI to a JavaFX or Swing-based GUI for a more user-friendly and visually intuitive experience.
+
+**🗃 Persistent Order History**
+Store all orders in a database (e.g., SQLite or MySQL) to support order lookups, analytics, and customer insights.
+
+**🌐 Web or Mobile Integration**
+Transform the app into a web-based or Android application using Spring Boot or Android Studio for real-time ordering.
+
+**👥 Customer Accounts & Loyalty System**
+Add customer login, saved favorite orders, and a point-based loyalty system to encourage repeat business.
+
+**🧠 Smart Recommendation Engine**
+Suggest sides, drinks, or sandwiches based on previous orders or trending items using basic machine learning or rule-based logic.
+
+**📦 Inventory Management**
+Track ingredient stock, auto-alert for low inventory, and generate purchase orders for resupply.
+
+**🧾 Receipt Formatting Enhancements**
+Add optional PDF receipt generation and email receipts with JavaMail integration.
+
+**🌍 Multi-language Support**
+Support multiple languages (i18n) to cater to a broader user base.
+
+**🛠 Settings & Admin Panel**
+Let shop managers modify sandwich templates, prices, or availability directly through the CLI or admin dashboard.
+
+**🧪 Unit Testing Suite**
+Integrate JUnit tests for individual components to ensure robustness during future feature additions.
+
+**🔌 Plugin Architecture**
+Allow modular addition of new sandwich types, sauces, or features without modifying the core system.
