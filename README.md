@@ -31,7 +31,7 @@
 ## 📸 Screenshots
 **🏠 Home Screen**
 
-![Screenshot 2025-05-29 092553](https://github.com/user-attachments/assets/4a0f07ae-8560-438d-8d12-c82c9c3a7446)
+![Screenshot 2025-05-30 132052](https://github.com/user-attachments/assets/3ff7c024-63a6-4f8d-8d6f-c4fbc8be2728)
 
 **🥪 Sandwich Builder**
 ```java
