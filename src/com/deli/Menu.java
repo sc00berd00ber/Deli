@@ -17,7 +17,9 @@ public class Menu {
 
     public void homeScreen() {
         while (true) {
-            System.out.println("\n-----------------Home Screen-----------------");
+            System.out.println("=========================================");
+            System.out.println("🍽️      -------- Home --------         🍽️");
+            System.out.println("=========================================");
             System.out.println("1) New Order");
             System.out.println("0) Exit");
             System.out.print("\nChoice: ");
@@ -293,12 +295,12 @@ public class Menu {
 
         System.out.print("Enter choice: For more than 1 selection insert comma (e.g., 1,3): ");
         String[] input = scanner.nextLine().split(",");
-        Set<Integer> selectedIndexes = new HashSet<>();
+        boolean addedAny = false;
 
         for (String choice : input) {
             try {
                 int index = Integer.parseInt(choice.trim()) - 1;
-                if (index >= 0 && index < drinkFlavors.length && selectedIndexes.add(index)) {
+                if (index >= 0 && index < drinkFlavors.length) {
                     String flavor = drinkFlavors[index];
 
                     String size;
@@ -313,19 +315,17 @@ public class Menu {
                     }
 
                     currentOrder.addDrink(new Drink(size, flavor));
+                    addedAny = true;
+                } else {
+                    System.out.println("Invalid selection: " + choice.trim());
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input: " + choice.trim());
             }
         }
 
-        if (selectedIndexes.isEmpty()) {
-            System.out.println("No drinks added.");
-        } else {
-            System.out.println("Drinks added to order.");
-        }
+        System.out.println(addedAny ? "Drinks added to order." : "No drinks added.");
     }
-
 
     public void addChips() {
         String[] chipOptions = {
@@ -342,24 +342,25 @@ public class Menu {
 
         System.out.print("Enter choice: For more than 1 selection insert comma (e.g., 1,3): ");
         String[] input = scanner.nextLine().split(",");
-        Set<Integer> selectedIndexes = new HashSet<>();
+        boolean addedAny = false;
 
         for (String choice : input) {
             try {
                 int index = Integer.parseInt(choice.trim()) - 1;
-                if (index >= 0 && index < chipOptions.length && selectedIndexes.add(index)) {
+                if (index >= 0 && index < chipOptions.length) {
                     String type = chipOptions[index];
                     currentOrder.addChips(new Chips(type));
+                    addedAny = true;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input: " + choice.trim());
             }
         }
 
-        if (selectedIndexes.isEmpty()) {
-            System.out.println("No chips added.");
-        } else {
+        if (addedAny) {
             System.out.println("Chips added to order.");
+        } else {
+            System.out.println("No chips added.");
         }
     }
 
@@ -371,21 +372,27 @@ public class Menu {
             System.out.printf("%d) %s%n", i + 1, sides[i]);
         }
 
-        System.out.print("Enter choice: For more than 1 selection insert comma (e.g., 1,3): ");
+        System.out.print("Enter choices (e.g., 2,2,5 for two Mayo and one Ranch): ");
         String[] input = scanner.nextLine().split(",");
-        Set<Integer> selectedIndexes = new HashSet<>();
+        boolean addedAny = false;
 
         for (String choice : input) {
             try {
                 int index = Integer.parseInt(choice.trim()) - 1;
-                if (index >= 0 && index < sides.length && selectedIndexes.add(index)) {
+                if (index >= 0 && index < sides.length) {
                     currentOrder.addSide(new Side(sides[index]));
+                    addedAny = true;
+                } else {
+                    System.out.println("Invalid selection: " + choice.trim());
                 }
-            } catch (NumberFormatException ignored) {}
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input: " + choice.trim());
+            }
         }
 
-        System.out.println("Sides added!");
+        System.out.println(addedAny ? "Sides added to order." : "No sides added.");
     }
+
 
     public void checkout() {
         System.out.println("\n---------- Order Summary ----------\n");
